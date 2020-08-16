@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'app_one/styles.css' %}">
+</head>
+<body>
+        
+        <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Signed in as <span style="color: blue;">{{user.first_name}}</span></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                <a class="nav-link" href="/main">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="/all_people">All people</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="#">Add New</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="/logout">Log Out</a>
+                </li>
+            </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header>
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+        </div>
+    </header>
+
+    <!-- Page Content -->
+    <section class="py-5">
+    <div class="container">
+        <h1 class="display-4" style="margin-left: -120px; margin-top: 20px;">Add New Person</h1>
+    </div>
+    </section>
+    <div id="add_new">
+        <form action="/add_new" method="POST" class="form-group">
+            {% csrf_token %}
+            <div id="new_person">
+                <label for="first_name">First Name:</label>
+                <input type="text" name="first_name" class="form-control">
+                <label for="last_name">Last Name:</label>
+                <input type="text" name="last_name" class="form-control">
+                <label for="desc">Description</label>
+                <textarea name="desc" id="desc" cols="30" rows="10" class="form-control"></textarea>
+            </div>
+            
+            <div id="quiz">
+                <h3>Short Quiz:</h3>
+                <p>After a long day would they rather spend time alone or go out with friends?</p>
+                <input type="radio" name="e_i" id="e" value="e">
+                <label for="e" >Go out</label><br>
+                <input type="radio" name="e_i" id="i" value="i">
+                <label for="i" >Spend time Alone</label>
+                <br><br>
+                <p>Do they tend to question everything or just accept the facts?</p>
+                <input type="radio" name="s_n" id="n" value="n">
+                <label for="n" >Question Everything</label><br>
+                <input type="radio" name="s_n" id="s" value="s">
+                <label for="s" >Accept the facts</label>
+                <br><br>
+                <p>Are their decisions made more based on how they think or how they feel?</p>
+                <input type="radio" name="t_f" id="t" value="t">
+                <label for="t" >How they think</label><br>
+                <input type="radio" name="t_f" id="f" value="f">
+                <label for="f" >How they feel</label>
+                <br><br>
+                <p>Are they more organized, always with a plan, or more go with the flow?</p>
+                <input type="radio" name="p_j" id="j" value="j">
+                <label for="j" >With a plan</label><br>
+                <input type="radio" name="p_j" id="p" value="p">
+                <label for="p" >Go with the flow</label>
+            </div>
+                <br>
+            <button class="btn btn-primary">Add New Person</button>
+        </form>
+    </div>
+</body>
+</html>

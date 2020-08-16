@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'app_one/styles.css' %}">
+</head>
+<body>
+    
+</body>
+</html>
+
+<body class="wrapper">
+  <div class="container">
+      <div class="col-lg-10 col-xl-9 mx-auto" style="max-width: 500px;">
+        <div class="card card-signin flex-row my-5">
+          <div class="card-img-left d-none d-md-flex">
+            <div class="logo_reg">
+              <img src="{% static 'app_one/images/IMG_3250.PNG'%}" alt="logo">
+            </div>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title text-center">Register</h5>
+            <form class="form-signin" action="/register" method="POST">
+                {% csrf_token %}
+              <div class="label">
+              </div>
+              <div class="form-label-group">
+                <p class="inline">First Name:</p>
+                <input style="display: inline-block; width: 100%;" name="first_name" type="text" id="inputUserame" class="form-control" placeholder="Username" required autofocus>
+              </div>
+              
+              <div class="form-label-group">
+                <p class="inline">Last Name:</p>
+                <input style="display: inline-block; width: 100%;" name="last_name" type="text" id="inputUserame" class="form-control" placeholder="Username" required autofocus>
+              </div>
+        
+              <div class="form-label-group">
+                <p class="inline">Email:</p>
+                <input style="display: inline-block; width: 100%;" name="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required>
+              </div>
+              
+              <hr>
+
+              <div class="form-label-group">
+                <p class="inline">Password:</p>
+                <input style="display: inline-block; width: 100%;" name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+              </div>
+              
+              <div class="form-label-group">
+                <p class="inline">Confirm Password:</p>
+                <input style="display: inline-block; width: 100%;" name="confirm" type="password" id="inputConfirmPassword" class="form-control" placeholder="Password" required>
+              </div>
+
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Register</button>
+              <a class="d-block text-center mt-2 small" href="/">Sign In</a>
+              
+              
+            </form>
+          </div>
+        </div>
+      </div>
+  </div>
+</body>

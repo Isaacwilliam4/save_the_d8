@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'app_one/styles.css' %}">
+</head>
+<body>
+        
+        <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Signed in as <span style="color: blue;">{{user.first_name}}</span></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                <a class="nav-link" href="#">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="/all_people">All people</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="/add_new_pg">Add New</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="/logout">Log Out</a>
+                </li>
+            </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header>
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+        </div>
+    </header>
+
+    <!-- Page Content -->
+    <section class="py-5">
+    <div class="container">
+        <h1 class="display-4">Welcome {{user.first_name}}!</h1>
+    </div>
+    </section>
+    <div>
+        <form action="/select_person" method="POST" class="form-group">
+            {% csrf_token %}
+            <label for="person">Select Person:</label>
+            <select name="person" class="form-control">
+                {% for person in user.people.all %}
+                    <option value="{{person.id}}">{{person.first_name}} {{person.last_name}}</option>
+                {% endfor %}
+            </select>
+            <button class="btn btn-primary">Select</button>
+        </form>
+    </div>
+</body>
+</html>
